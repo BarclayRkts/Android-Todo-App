@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 //import jdk.javadoc.internal.doclets.toolkit.util.DocPath.parent
 
 import android.R
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.TextureView
@@ -42,6 +43,11 @@ class TaskItemAdapater(val listOfItems: List<String>) : RecyclerView.Adapter<Tas
 
         init{
             textView = itemView.findViewById(R.id.text1)
+
+            itemView.setOnLongClickListener{
+                Log.i("DeJa", "Long Clicked " + adapterPosition)
+                true
+            }
         }
     }
 
