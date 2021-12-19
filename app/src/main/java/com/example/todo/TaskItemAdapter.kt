@@ -6,15 +6,17 @@ import androidx.recyclerview.widget.RecyclerView
 //import jdk.javadoc.internal.doclets.toolkit.util.DocPath.parent
 
 import android.R
-import android.util.Log
 
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.widget.TextView
 
 // A bridge that tells the recyler view how we display the data we give ir
 
-class TaskItemAdapater(val listOfItems: List<String>) : RecyclerView.Adapter<TaskItemAdapater.ViewHolder>() {
+class TaskItemAdapter(val listOfItems: List<String>, val longClickListener: OnLongClickListener) : RecyclerView.Adapter<TaskItemAdapter.ViewHolder>(){
+
+    interface OnLongClickListener {
+        fun onItemLongClicked(position: Int)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val context = parent.context
@@ -45,7 +47,7 @@ class TaskItemAdapater(val listOfItems: List<String>) : RecyclerView.Adapter<Tas
             textView = itemView.findViewById(R.id.text1)
 
             itemView.setOnLongClickListener{
-                Log.i("DeJa", "Long Clicked " + adapterPosition)
+                longClickListener.onItemLongClicked(adapterPosition)
                 true
             }
         }
